@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Text Animation</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let textContent = "Sanningen finns i naturen. I varje lövs prassel och flodens mjuka rörelse viskar den om livets eviga kretslopp. Trädens rötter sträcker sig ner i jorden, där de bär på minnen från tider före oss. Himlens ständiga förändring påminner oss om att allt är förgängligt men ändå förbundet.";
+    let charset = "/|\\_-–*#,.!?1234567890 <>'»«AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÄäÖöÅå";
+    let displayedText = [];
+    let charsetIndex = 0;
+    let textIndex = 0;
+    let sans;
+    let fontSize, lineHeight;
+
+    function preload() {
+      // Load custom font (replace path if needed)
+      sans = loadFont("assets/Coconat-Regular.otf");
+    }
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      displayedText = Array(1000).fill(' '); // Initialize displayed text with spaces
+      fontSize = height * 0.09;
+      lineHeight = 0.9;
+    }
+
+    function draw() {
+      // Update the displayed text
+      for (let i = 0; i < 5; i++) {
+        if (textIndex < textContent.length) {
+          if (charset[charsetIndex] === textContent[textIndex]) {
+            displayedText[textIndex] = charset[charsetIndex];
+            textIndex++;
+            charsetIndex = 0;
+          } else {
+            displayedText[textIndex] = charset[charsetIndex];
+            charsetIndex++;
+          }
+        }
+      }
+      let displayTextStr = displayedText.join('');
+
+      // Draw the text
+      background(255);
+      fill(0);
+      textFont(sans);
+      textAlign(LEFT, TOP);
+      textSize(fontSize);
+      textLeading(lineHeight * fontSize);
+
+      text(displayTextStr, 15, 0, width - 30, height - 30);
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+      fontSize = height * 0.09;
+    }
+  </script>
+</body>
+</html>
