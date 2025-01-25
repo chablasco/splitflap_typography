@@ -24,8 +24,8 @@
     let sans;
     let fontSize, lineHeight;
 
-    let bgColor = [255, 255, 255]; // Background color (default: white)
-    let textColor = [0, 0, 0]; // Text color (default: black)
+    let bgColor = "#F5F5DC"; // Default background color (light beige)
+    let textColor = "#2E4053"; // Default text color (dark slate gray)
 
     function preload() {
       // Load custom font (replace path if needed)
@@ -55,7 +55,7 @@
       }
       let displayTextStr = displayedText.join('');
 
-      // Draw the text with dynamic colors
+      // Draw the text with default or dynamic colors
       background(bgColor);
       fill(textColor);
       textFont(sans);
@@ -69,11 +69,11 @@
     function keyPressed() {
       // Press 'B' to toggle background color
       if (key === 'b' || key === 'B') {
-        bgColor = [random(255), random(255), random(255)];
+        bgColor = color(random(255), random(255), random(255));
       }
       // Press 'T' to toggle text color
       if (key === 't' || key === 'T') {
-        textColor = [random(255), random(255), random(255)];
+        textColor = color(random(255), random(255), random(255));
       }
     }
 
