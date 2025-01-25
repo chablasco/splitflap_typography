@@ -38,8 +38,6 @@
       fontSize = height * 0.09;
       lineHeight = 0.9;
 
-       // Automatically enter fullscreen on page load
-      openFullscreen();
     }
 
     function draw() {
@@ -84,27 +82,6 @@
       resizeCanvas(windowWidth, windowHeight);
       fontSize = height * 0.09;
     }
-
-     // Function to open fullscreen
-    function openFullscreen() {
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.webkitRequestFullscreen) { // Safari
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) { // IE11
-        document.documentElement.msRequestFullscreen();
-      }
-    }
-
-    // Function to exit fullscreen
-    function closeFullscreen() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) { // Safari
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { // IE11
-        document.msExitFullscreen();
-      }
       
   </script>
 </body>
